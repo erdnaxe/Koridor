@@ -7,18 +7,24 @@ from case import *
 class Game:
 
     def __init__(self):
+        self.nblayer = 2
+        self.idPlayer = 0 # rang du player qui joue
+
         self.board = Board()
-        self.players = [Player(), Player()]
-        self.board.map[4][0].player = self.players[0]
-        self.board.map[4][9].player = self.players[1]
+        self.players = self.nblayer * [Player()]
+        for player in self.players:
+            player.init()
+        #self.board.map[4][0].player = self.players[0]
+        #self.board.map[4][9].player = self.players[1]
 
     def newGame(self):
         self.__init__()
 
     def play(self, action):
         if action == "go_forward":
-            self.board.map[4][0].player = None
-            self.board.map[4][1].player = self.players[0]
+            self.players[idPlayer].goForward()
+            #self.board.map[4][0].player = None
+            #self.board.map[4][1].player = self.players[0]
         elif action == "go_backward":
             self.board.map[4][0].player = None
             self.board.map[4][1].player = self.players[0]
