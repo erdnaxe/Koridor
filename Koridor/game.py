@@ -7,11 +7,11 @@ from case import *
 class Game:
 
     def __init__(self):
-        self.nblayer = 2
+        self.nbPlayer = 2
         self.idPlayer = 0 # rang du player qui joue
 
         self.board = Board()
-        self.players = self.nblayer * [Player()]
+        self.players = self.nbPlayer * [Player()]
         for player in self.players:
             player.init()
         #self.board.map[4][0].player = self.players[0]
@@ -32,7 +32,13 @@ class Game:
             self.board.map[4][0].player = None
             self.board.map[4][1].player = self.players[0]
 
-        #return 1 si mouvement effectue, 0 sinon
+        # continu si mouvement effectue, return 0 sinon
+        if self.idPlayer = self.nbPlayer:
+            self.idPlayer = 0
+        else:
+            self.idPlayer += 1
+
+        return 1
 
     def verifiedAction(self, action):
         # return 1 si action possible, 0 sinon
