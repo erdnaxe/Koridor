@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-
-from player import *
+from game import *
 
-players = []
-for i in range(0, 2):
-    players += [Player()]
-    print(players[i].id)
+
+game = Game()
+
+while True:
+    #demande pour action
+    print("que faire ?")
+    action = input("> ")
+
+    game.play()
+
+    # affiche jeu
+
+    if game.isFinished():
+        print("Le joueur " + game.isFinished() + " a gagné")
+        game.newGame()
