@@ -19,10 +19,10 @@ class Game:
         if action == "go_forward":
             self.board.map[4][0].player = None
             self.board.map[4][1].player = self.players[0]
-        else if action == "go_backward":
+        elif action == "go_backward":
             self.board.map[4][0].player = None
             self.board.map[4][1].player = self.players[0]
-        else if action == "go_to_left":
+        elif action == "go_to_left":
             self.board.map[4][0].player = None
             self.board.map[4][1].player = self.players[0]
 
