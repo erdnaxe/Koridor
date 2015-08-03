@@ -6,7 +6,7 @@ class Board:
     def __init__(self):
         self.resetBoard()
 
-    # Create a 2D array contenant des objets "case"
+    # Create a 2D array with "case" objects
     def resetBoard(self):
         self.map = []
         for i in range(10):
