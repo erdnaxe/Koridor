@@ -12,3 +12,6 @@ class Board:
     # Create a 2D array contenant des objets "case"
     def resetBoard(self):
         self.__init__()
+
+    def getCase(self, x, y):
+        return self.map[x][y]
