@@ -10,4 +10,3 @@ class Case:
 
         self.walls = 4 * [0]  # 1 : haut, 2 : droite, 3 : bas, 4 : gauche
         self.player = None
-
