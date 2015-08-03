@@ -9,7 +9,7 @@ while True:
     print("que faire ?")
     action = input("> ")
 
-    game.play()
+    game.play(action)
 
     # affiche jeu
 
