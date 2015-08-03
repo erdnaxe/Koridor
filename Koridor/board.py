@@ -4,10 +4,11 @@ from case import *
 
 class Board:
     def __init__(self):
-        self.resetBoard()
-
-    # Create a 2D array with "case" objects
-    def resetBoard(self):
+        self.size = 9
         self.map = []
-        for i in range(10):
-            self.map.append([Case()] * 10)
+        for i in range(self.size):
+            self.map.append([Case()] * self.size)
+
+    # Create a 2D array contenant des objets "case"
+    def resetBoard(self):
+        self.__init__()
