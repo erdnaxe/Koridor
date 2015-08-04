@@ -21,10 +21,6 @@ class Game:
 
         self.board = Board()
         self.players = self.nbPlayer * [Player()]
-        for player in self.players:
-            player.init()
-        #self.board.map[4][0].player = self.players[0]
-        #self.board.map[4][9].player = self.players[1]
 
     def newGame(self):
         """ this fonction create a new game
