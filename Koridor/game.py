@@ -20,9 +20,9 @@ class Game:
         self.nbPlayer = 2
         self.activePlayer = 0  # active player
 
-        self.action = Action()
-        self.board = Board()
         self.players = self.nbPlayer * [Player()]
+        self.action = Action()
+        self.board = Board(self.players)
 
     def newGame(self):
         """ this fonction create a new game
