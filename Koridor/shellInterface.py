@@ -5,8 +5,6 @@ you can draw a Koridor game in a monospace Shell.
 @license: MIT
 """
 
-import sys
-
 
 class ShellInterface:
 
@@ -21,16 +19,16 @@ class ShellInterface:
                 self.drawMiddleCase(x, y)
                 if y == self.size - 1:
                     self.drawLeftRightWall(x, y, 2)
-                    sys.stdout.write('\n')  # newline
+                    print('')  # newline
 
     def drawLeftRightWall(self, x, y, side):
         if self.map[x][y].hasWall(side):
-            sys.stdout.write('|')
+            print('||', end='')
         else:
-            sys.stdout.write(' ')
+            print('██', end='')
 
     def drawMiddleCase(self, x, y):
         if self.map[x][y].player is None:
-            sys.stdout.write('██')
+            print('  ', end='')
         else:
-            sys.stdout.write(str(self.map[x][y].player.id))
+            print(str(self.map[x][y].player.id), end='')
