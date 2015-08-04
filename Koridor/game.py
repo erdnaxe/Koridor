@@ -7,6 +7,7 @@
 from board import *
 from player import *
 from case import *
+from action import *
 
 
 class Game:
@@ -17,8 +18,9 @@ class Game:
         """ constructor
         """
         self.nbPlayer = 2
-        self.idPlayer = 0  # active player
+        self.activePlayer = 0  # active player
 
+        self.action = Action()
         self.board = Board()
         self.players = self.nbPlayer * [Player()]
 
@@ -27,7 +29,7 @@ class Game:
         """
         self.__init__()
 
-    def play(self, action):
+    def play(self, actionString):
         """
             Method to play an action and change the active player
             Return True if the action succeded, else False
@@ -36,8 +38,11 @@ class Game:
                 play(action = "go_forward")
                 play(action = "place_wall", coordWall=[[0, 0], 1])
         """
+        self.action.stringToAction()
+
         # First, verify that the action is possible
-        if not self.verifiedAction(action):
+        if not self.verifiedAction(self.action):
+        #TODO modifier
             return False
 
         # Do the action !
@@ -55,10 +60,10 @@ class Game:
             return 0
 
         # Change the active player
-        if self.idPlayer != self.nbPlayer:
-            self.idPlayer += 1
+        if self.activePlayer != self.nbPlayer:
+            self.activePlayer += 1
         else:
-            self.idPlayer = 0
+            self.activePlayer = 0
 
         return 1
 
