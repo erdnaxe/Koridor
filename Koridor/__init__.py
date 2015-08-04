@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""This project consists of recreating the Koridor game in Python.
+@author: Iooss
+@license: MIT
+"""
+
 from game import *
 
 

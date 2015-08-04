@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-from case import *
+"""This is the Board class.
+@author: Iooss
+@license: MIT
+"""
+
+from .case import *
 
 
 class Board:
