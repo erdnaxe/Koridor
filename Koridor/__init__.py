@@ -7,21 +7,17 @@
 from game import *
 from shellInterface import *
 
-
 game = Game()
 interface = ShellInterface(game)
 
 while True:
+    # Draw the grid
     interface.drawGrid()
 
-    #demande pour action
-    print("que faire ?")
-    action = input("> ")
+    # Ask and play an action
+    game.play(interface.askAction())
 
-    game.play(action)
-
-    # affiche jeu
-
+    # End of the game
     if game.isFinished():
         print("Le joueur " + game.isFinished() + " a gagné")
         game.newGame()

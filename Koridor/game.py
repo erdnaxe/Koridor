@@ -80,8 +80,8 @@ class Game:
         else:
             return False
 
-    def isFinnish():
+    def isFinished(self):
         for player in self.players:
-            if player.win():
+            if (player.initpos[0] - player.pos[0]) ** 2 == 81:
                 return player.id
         return 0
