@@ -20,10 +20,10 @@ class Player:
             self.initPosition = [0, 4]
             self.position = [0, 4]
         elif self.id == 2:
-            self.initPosition = [8, 4]
-            self.position = [8, 4]
+            self.initPosition = [0, 6]
+            self.position = [0, 6]
         else:
-            print("This software doesn't support more than 2 players. Sorry, go make yourself a coffee.")  # To DO (not the coffee)
+            print("This software doesn't support more than 2 players. Sorry, go make yourself a coffee.")  #TODO (not the coffee)
 
     def executeAction(self, action):
         """
