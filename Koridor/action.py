@@ -29,4 +29,7 @@ class Action:
             return True
         elif actionSring in Action.allActions[4]:
             # cas du placement de mur
+            #TODO
             return True
+
+        return False
