@@ -55,7 +55,11 @@ class Game:
             return 0
 
         # Change the active player
-        self.idPlayer += 1 if self.idPlayer != self.nbPlayer else -self.idPlayer
+        if self.idPlayer != self.nbPlayer:
+            self.idPlayer += 1
+        else:
+            self.idPlayer = 0
+
         return 1
 
     def verifiedAction(self, action, coordWall=[[0, 0], 1]):
