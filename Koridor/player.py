@@ -10,5 +10,11 @@ class Player:
 
         self.walls = 10
 
-    def init(self):
-        return
+        if self.id == 1:
+            self.initpos = [0, 4]
+            self.pos = [0, 4]
+        elif self.id == 2:
+            self.initpos = [8, 4]
+            self.pos = [8, 4]
+        else:
+            print("This software doesn't support more than 2 players. Sorry, go make yourself a coffee.")  # To DO (not the coffee)

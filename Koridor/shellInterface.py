@@ -16,6 +16,7 @@ class ShellInterface:
         """
             Method to draw the grid
         """
+        print()  # new line
         for x in range(self.size):
             for y in range(self.size):
                 self.drawMiddleCase(x, y)
@@ -58,3 +59,7 @@ class ShellInterface:
             print('  ', end='')
         else:
             print(str(self.map[x][y].player.id) + ' ', end='')
+
+    def askAction(self):
+        print("What I do ?")
+        return input("> ")
