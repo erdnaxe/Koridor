@@ -6,7 +6,6 @@ you can draw a Koridor game in a monospace Shell.
 """
 
 import sys
-from colorama import init
 
 
 class ShellInterface:
@@ -14,7 +13,6 @@ class ShellInterface:
     def __init__(self, game):
         self.size = game.board.size
         self.map = game.board.map
-        init()
 
     def drawGrid(self):
         for x in range(self.size):
@@ -26,13 +24,13 @@ class ShellInterface:
                     sys.stdout.write('\n')  # newline
 
     def drawLeftRightWall(self, x, y, side):
-        if self.map[x][y].haveWall(side):
+        if self.map[x][y].hasWall(side):
             sys.stdout.write('|')
         else:
             sys.stdout.write(' ')
 
     def drawMiddleCase(self, x, y):
         if self.map[x][y].player is None:
-            sys.stdout.write('■')
+            sys.stdout.write('██')
         else:
             sys.stdout.write(str(self.map[x][y].player.id))
