@@ -4,7 +4,7 @@
 @license: MIT
 """
 
-from .case import *
+from case import *
 
 
 class Board:

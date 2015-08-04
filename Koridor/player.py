@@ -9,4 +9,6 @@ class Player:
         Player.idClass += 1
 
         self.walls = 10
-        self.
+
+    def init(self):
+        return

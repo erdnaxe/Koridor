@@ -15,16 +15,22 @@ class Case:
         self.walls = 4 * [False]
         self.player = None
 
-    def placeWall(self, coords, side):
+    def placeWall(self, side):
         """
             Method to place a wall in this case
             The attribute side takes values from 1 to 4
             1 => top,
-            2 => left,
+            2 => right,
             3 => bottom,
-            4 => right
+            4 => left
 
             Exemple:
-                placeWall(coords = [0, 0], side = 4)
+                placeWall(side = 4)
         """
         self.walls[side] = True
+
+    def hasWall(self, side):
+        """
+            Method to know if there is a wall on a side
+        """
+        return self.walls[side - 1]  # ??? vérifier l'index

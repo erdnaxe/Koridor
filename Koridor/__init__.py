@@ -5,19 +5,23 @@
 """
 
 from game import *
+from shellInterface import *
 
 
 game = Game()
+interface = ShellInterface(game)
 
 while True:
+    interface.drawGrid()
+
     #demande pour action
     print("que faire ?")
-    action = input("> ")
+    action = input("▶ ")
 
     game.play(action)
 
     # affiche jeu
 
     if game.isFinished():
-        print("Le joueur " + game.isFinished() + " a gagné")
+        print("⚑ Le joueur " + game.isFinished() + " a gagné")
         game.newGame()

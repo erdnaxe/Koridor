@@ -4,9 +4,9 @@
 @license: MIT
 """
 
-from .board import *
-from .player import *
-from .case import *
+from board import *
+from player import *
+from case import *
 
 
 class Game:
