@@ -40,3 +40,4 @@ class Board:
         for player in self.players:
             if player.position == position:
                 return player.id
+        return 0
