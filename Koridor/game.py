@@ -86,6 +86,6 @@ class Game:
 
     def isFinnish():
         for player in self.players:
-            if player.won():
+            if player.win():
                 return player.id
         return 0
