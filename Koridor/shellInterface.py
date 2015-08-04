@@ -11,15 +11,22 @@ class ShellInterface:
     def __init__(self, game):
         self.size = game.board.size
         self.map = game.board.map
+        self.players = game.players
 
     def drawGrid(self):
         """
             Method to draw the grid
         """
+        self.positionsUsed = []
+        self.positionsPlayers = {}
+        for player in self.players:
+            self.positionsUsed.append(player.position)
+            self.positionsPlayers[player.position] = player
+
         print()  # new line
         for x in range(self.size):
             for y in range(self.size):
-                self.drawMiddleCase(x, y)
+                self.drawMiddleCase([x, y])
                 if y != self.size - 1:
                     self.drawVerticalWall(x, y)
                 else:
@@ -51,14 +58,14 @@ class ShellInterface:
                     print('+', end='')
             print()  # new line
 
-    def drawMiddleCase(self, x, y):
+    def drawMiddleCase(self, position):
         """
             Method to draw the center of a case (with the player if he is here)
         """
-        if self.map[x][y].player is None:
-            print('  ', end='')
+        if position in positionsUsed:
+            print(str(self.positionsPlayers[position].id) + ' ', end='')
         else:
-            print(str(self.map[x][y].player.id) + ' ', end='')
+            print('  ', end='')
 
     def askAction(self):
         print("What must I do ?")
