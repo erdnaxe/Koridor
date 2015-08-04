@@ -13,7 +13,6 @@ class Case:
         Case.idClass += 1
 
         self.walls = 4 * [False]
-        self.player = None
 
     def placeWall(self, side):
         """
