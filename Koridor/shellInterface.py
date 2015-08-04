@@ -57,4 +57,4 @@ class ShellInterface:
         if self.map[x][y].player is None:
             print('  ', end='')
         else:
-            print(str(self.map[x][y].player.id), end='')
+            print(str(self.map[x][y].player.id) + ' ', end='')
