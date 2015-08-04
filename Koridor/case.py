@@ -6,9 +6,15 @@
 
 
 class Case:
+    """
+        This method implement the case of the board
+    """
     idClass = 1
 
     def __init__(self):
+        """
+            constructor
+        """
         self.id = Case.idClass
         Case.idClass += 1
 
@@ -22,14 +28,11 @@ class Case:
             2 => right,
             3 => bottom,
             4 => left
-
-            Exemple:
-                placeWall(side = 4)
         """
-        self.walls[side] = True
+        self.walls[side - 1] = True
 
     def hasWall(self, side):
         """
             Method to know if there is a wall on a side
         """
-        return self.walls[side - 1]  # ??? vérifier l'index
+        return self.walls[side - 1]
