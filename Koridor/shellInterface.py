@@ -61,5 +61,5 @@ class ShellInterface:
             print(str(self.map[x][y].player.id) + ' ', end='')
 
     def askAction(self):
-        print("What I do ?")
+        print("What must I do ?")
         return input("> ")
