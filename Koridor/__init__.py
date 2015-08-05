@@ -23,7 +23,7 @@ while True:
         if game.play(action):
             # End of the game
             if game.isFinished():
-                print("Le joueur " + game.isFinished() + " a gagné")
+                print("Le joueur " + str(game.isFinished()) + " a gagné")
                 game.newGame()
     else:
         # not a valid action

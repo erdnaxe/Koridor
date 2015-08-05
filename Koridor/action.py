@@ -33,7 +33,7 @@ class Action:
         """
         for i in range(4):
             if actionSring == Action.allActions[i]:
-                self.id = i
+                self.id = i + 1
                 return True
         if actionSring in Action.allActions[4]:
             # cas du placement de mur

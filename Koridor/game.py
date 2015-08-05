@@ -55,8 +55,8 @@ class Game:
             This method checks if the game is finished
         """
         for player in self.players:
-            if (player.initPosition[0] - player.position[0]) == 9:
+            if (player.initPosition[1] - player.position[1]) == self.board.size - 1:
                 return player.id
-            if (player.initPosition[0] - player.position[0]) == -9:
+            if (player.initPosition[1] - player.position[1]) == -self.board.size + 1:
                 return player.id
         return 0
