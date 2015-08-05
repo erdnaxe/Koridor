@@ -20,13 +20,11 @@ while True:
     action = Action()
     if action.stringToAction(stringAction):
         # the action is valid
-        game.play(action)
-        # End of the game
-        if game.isFinished():
-            print("Le joueur " + game.isFinished() + " a gagné")
-            game.newGame()
+        if game.play(action):
+            # End of the game
+            if game.isFinished():
+                print("Le joueur " + game.isFinished() + " a gagné")
+                game.newGame()
     else:
         # not a valid action
         print("Action inconnue")
-
-

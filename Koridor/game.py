@@ -38,7 +38,8 @@ class Game:
 
         # Do the action !
         if not self.players[self.activePlayer].executeAction(action):
-            return "Cette action ne peut pas être effectué"
+            print("Cette action ne peut pas être effectué")
+            return False
 
         # Change the active player
         if self.activePlayer != self.nbPlayer - 1:
@@ -53,8 +54,6 @@ class Game:
             This method checks if the game is finished
         """
         for player in self.players:
-            if (player.initPosition[0] - player.position[0]) == 9:
-                return player.id
-            if (player.position[0] - player.initPosition[0]) == 9:
+            if (player.initposition[0] - player.position[0]) ** 2 == 81:
                 return player.id
         return 0
