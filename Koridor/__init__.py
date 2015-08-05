@@ -13,8 +13,6 @@ interface = ShellInterface(game)
 
 while True:
     # Draw the grid
-    game.board.map[4][5].placeWall(3)
-    game.board.map[4][4].placeWall(2)
     interface.drawGrid()
 
     # Ask and play an action
