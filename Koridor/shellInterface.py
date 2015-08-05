@@ -10,6 +10,7 @@ class ShellInterface:
 
     def __init__(self, game):
         self.board = game.board
+        self.activePlayer = game.activePlayer
 
     def drawGrid(self):
         """
@@ -78,5 +79,5 @@ class ShellInterface:
             return '  '
 
     def askAction(self):
-        print("What must I do ?")
+        print("C'est au joueur " + str(self.activePlayer + 1) + " de jouer.")
         return input("> ")
