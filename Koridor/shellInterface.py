@@ -17,7 +17,7 @@ class ShellInterface:
             Constructor
         """
         self.board = game.board
-        self.activePlayer = game.activePlayer
+        self.game = game
 
     def drawGrid(self):
         """
@@ -87,6 +87,7 @@ class ShellInterface:
         """
             Ask the user the action he wants to execute
         """
-        print(("C'est au joueur " + str(self.activePlayer + 1) + " de jouer."))
+        print(("C'est au joueur " + str(self.game.activePlayer + 1)
+            + " de jouer."))
         command = str(input("> "))
         return command
