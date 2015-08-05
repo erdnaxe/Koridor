@@ -38,7 +38,8 @@ class Game:
         """
 
         # Do the action !
-        if not self.players[self.activePlayer].executeAction(action, self.board):
+        if not self.players[self.activePlayer].executeAction(action,
+                                                            self.board):
             print("Cette action ne peut pas être effectué")
             return False
 
@@ -55,8 +56,10 @@ class Game:
             This method checks if the game is finished
         """
         for player in self.players:
-            if (player.initPosition[1] - player.position[1]) == self.board.size - 1:
+            if (player.initPosition[1] -
+                            player.position[1]) == self.board.size - 1:
                 return player.id
-            if (player.initPosition[1] - player.position[1]) == -self.board.size + 1:
+            if (player.initPosition[1] -
+                            player.position[1]) == -self.board.size + 1:
                 return player.id
         return 0

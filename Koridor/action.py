@@ -25,19 +25,23 @@ class Action:
         # 1 : le mur commence en haut et s'etend a gauche
         # 2 : le mur commence a droite et s'etend en bas
         # 3 : le mur commence en bas et s'etend a gauche
-        # 4 : le mur commence a geuche et s'etend en bas'
+        # 4 : le mur commence a geuche et s'etend en bas
 
-    def stringToAction(self, actionSring):
+    def stringToAction(self, actionString):
         """
             This method take a string and init the Action object depending of it
         """
         for i in range(4):
-            if actionSring == Action.allActions[i]:
+            if actionString == Action.allActions[i]:
                 self.id = i + 1
                 return True
-        if actionSring in Action.allActions[4]:
+        if actionString in Action.allActions[4]:
+            # "w 2 5 3" "w [0,8] [0, 8], [1, 4]"
             # cas du placement de mur
-            #TODO
+            part = actionString.split()
+            self.id = 5
+            self.wallCoordinate = [int(part[1]), int(part[2])]
+            self.wallType = part(3)
             return True
 
         return False

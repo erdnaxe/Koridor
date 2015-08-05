@@ -38,6 +38,23 @@ class Player:
                     self.move(i)
                     return True
 
+        if action.id == 5:
+            # place a wall
+            x = action.wallCoordinate[0]
+            y = action.wallCoordinate[1]
+            case = board.map[x][y]
+            if action.wallType == 1 and x > 0 and y < 8:
+                case2 = board.map[x - 1][y]
+
+            if action.wallType in [1, 3] and x > 0:
+
+            elif action.wallType in [2, 4] and y > 0:
+                case2 = board.map[x][y - 1]
+            else:
+                return False
+
+
+
         return False
 
     def move(self, idDeplacement):
