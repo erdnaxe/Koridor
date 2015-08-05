@@ -18,9 +18,11 @@ class Game:
         """ constructor
         """
         self.nbPlayer = 2
-        self.activePlayer = 0  # active player
+        self.activePlayer = 0
 
-        self.players = self.nbPlayer * [Player()]
+        self.players = []
+        for i in range(self.nbPlayer):
+            self.players += [Player()]
         self.action = Action()
         self.board = Board(self.players)
 

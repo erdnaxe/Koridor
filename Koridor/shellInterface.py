@@ -10,56 +10,72 @@ class ShellInterface:
 
     def __init__(self, game):
         self.board = game.board
-        self.players = game.players
 
     def drawGrid(self):
         """
             Method to draw the grid
         """
         print()  # new line
+
         for x in range(self.board.size):
-            for y in range(self.board.size):
-                self.drawMiddleCase([x, y])
-                if y != self.board.size - 1:
-                    self.drawVerticalWall(x, y)
-                else:
-                    print()  # new line
-                    self.drawHorizontalWalls(x)
+            print((self.horizontalGridLine(x)))
 
-    def drawVerticalWall(self, x, y):
+    def horizontalGridLine(self, x):
         """
-            Method to draw the wall between 2 players
+            Method to return 2 lines of the grid (player line and walls line)
         """
-        if self.board.map[x][y].hasWall(2):
-            print('█', end='')
+        tmpReturn = ''
+
+        for y in range(self.board.size):
+            tmpReturn += self.centerCase([x, y])
+            if y != self.board.size - 1:
+                # draw right wall
+                tmpReturn += self.verticalWall(self.board.map[x][y])
+            else:
+                tmpReturn += '\n'
+
+                if x != self.board.size - 1:
+                    # draw the bottom horizontal line of walls
+                    tmpReturn += self.horizontalWalls(self.board.map[x])
+
+        return tmpReturn
+
+    def verticalWall(self, case):
+        """
+            Method to return the wall between 2 players
+        """
+        if case.hasWall(2):
+            return '█'
         else:
-            print('|', end='')
+            return '|'
 
-    def drawHorizontalWalls(self, x):
+    def horizontalWalls(self, line):
         """
-            Method to draw a horizontal line of walls (not the player line)
+            Method to return a horizontal line of walls (not the player line)
         """
-        if x != self.board.size - 1:
-            for y in range(self.board.size):
-                if self.board.map[x][y].hasWall(1):
-                    print('■■', end='')
-                else:
-                    print('--', end='')
+        tmpReturn = ''
 
-                # Draw the plus
-                if y != self.board.size - 1:
-                    print('+', end='')
-            print()  # new line
+        for y in range(self.board.size):
+            if line[y].hasWall(1):
+                tmpReturn += '■■'
+            else:
+                tmpReturn += '--'
 
-    def drawMiddleCase(self, position):
+            # Draw the plus
+            if y != self.board.size - 1:
+                tmpReturn += '+'
+
+        return tmpReturn
+
+    def centerCase(self, position):
         """
-            Method to draw the center of a case (with the player if he is here)
+            Method to return the center of a case
         """
         playerId = self.board.getPlayerByPosition(position)
         if playerId != 0:
-            print(str(playerId) + ' ', end='')
+            return str(playerId) + ' '
         else:
-            print('  ', end='')
+            return '  '
 
     def askAction(self):
         print("What must I do ?")
