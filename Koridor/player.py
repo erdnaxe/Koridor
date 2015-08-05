@@ -23,16 +23,10 @@ class Player:
             self.initPosition = [8, 4]
             self.position = [8, 4]
         else:
-            print("This software doesn't support more than 2 players. Sorry, go make yourself a coffee.")  #TODO (not the coffee)
+            print("This software doesn't support more than 2 players.")
 
     def executeAction(self, action):
         """
             Take an object Action and execute it
-        """
-        return False
-
-    def testAction(self, action):
-        """
-        Take an action and test it
         """
         return False

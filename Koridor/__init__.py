@@ -6,6 +6,7 @@
 
 from game import *
 from shellInterface import *
+from action import *
 
 game = Game()
 interface = ShellInterface(game)
@@ -15,9 +16,17 @@ while True:
     interface.drawGrid()
 
     # Ask and play an action
-    game.play(interface.askAction())
+    stringAction = interface.askAction()
+    action = Action()
+    if action.stringToAction(stringAction):
+        # the action is valid
+        game.play(action)
+        # End of the game
+        if game.isFinished():
+            print("Le joueur " + game.isFinished() + " a gagné")
+            game.newGame()
+    else:
+        # not a valid action
+        print("Action inconnue")
 
-    # End of the game
-    if game.isFinished():
-        print("Le joueur " + game.isFinished() + " a gagné")
-        game.newGame()
+
