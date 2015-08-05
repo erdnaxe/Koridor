@@ -60,7 +60,7 @@ class ShellInterface:
         """
             Method to return the wall between 2 players
         """
-        if case.hasWall(2):
+        if case.hasWall(3):
             return '█'
         else:
             return '│'
@@ -72,7 +72,7 @@ class ShellInterface:
         tmpReturn = ''
 
         for y in range(self.board.size):
-            if line[y].hasWall(1):
+            if line[y].hasWall(2):
                 tmpReturn += '■■'
             else:
                 tmpReturn += '——'
