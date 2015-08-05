@@ -5,14 +5,20 @@ class Action:
     """
         This class create an object to encode the player wish of action
     """
-    allActions = ["go_forward", "go_backward", "go_left",
-                "go_right", "place_wall"]
+    allActions = ["go_forward", "go_right", "go_backward", "go_left",
+                "place_wall"]
 
     def __init__(self):
         """
             constructor
         """
-        self.action = ""
+        self.id = 0
+        # 1 : forward
+        # 2 : right
+        # 3 : backward
+        # 4 : left
+        # 5 : wall
+
         self.wallCoordinate = [0, 0]
         self.wallType = 0
         # 1 : le mur commence en haut et s'etend a gauche
@@ -24,10 +30,11 @@ class Action:
         """
             This method take a string and init the Action object depending of it
         """
-        if actionSring in Action.allActions[:4]:
-            self.action = actionSring
-            return True
-        elif actionSring in Action.allActions[4]:
+        for i in range(4):
+            if actionSring == Action.allActions[i]:
+                self.id = i
+                return True
+        if actionSring in Action.allActions[4]:
             # cas du placement de mur
             #TODO
             return True
