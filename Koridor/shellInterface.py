@@ -48,7 +48,7 @@ class ShellInterface:
         if case.hasWall(2):
             return '█'
         else:
-            return '|'
+            return '│'
 
     def horizontalWalls(self, line):
         """
@@ -60,11 +60,11 @@ class ShellInterface:
             if line[y].hasWall(1):
                 tmpReturn += '■■'
             else:
-                tmpReturn += '--'
+                tmpReturn += '——'
 
             # Draw the plus
             if y != self.board.size - 1:
-                tmpReturn += '+'
+                tmpReturn += '┼'
 
         return tmpReturn
 
