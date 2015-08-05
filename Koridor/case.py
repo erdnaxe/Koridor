@@ -19,6 +19,8 @@ class Case:
         Case.idClass += 1
 
         self.walls = 4 * [False]
+        for i in range(4):
+            self.walls.append([False])
 
     def placeWall(self, side):
         """
