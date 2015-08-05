@@ -13,7 +13,7 @@ class Board:
     """
     def __init__(self, players):
         """
-        constructor
+            Constructor
         """
         self.size = 9
         self.map = []
@@ -29,7 +29,7 @@ class Board:
 
     def getCase(self, x, y):
         """
-            retourne la case correspondant a la position
+            Return la case correspondant a la position
         """
         return self.map[x][y]
 
@@ -41,3 +41,18 @@ class Board:
             if player.position == position:
                 return player.id
         return 0
+
+    def checkPath(self, positionPlayer, destinations):
+        """
+            Check if the player can go to his destinations
+        """
+        alreadyExplore = []
+        self.resursiveCheckPath(positionPlayer, destinations, alreadyExplore)
+
+    def resursiveCheckPath(self, position, destinations, alreadyExplore):
+        if position in alreadyExplore:
+            return False
+        if position in destinations:
+            return True
+
+        #TODO : appel de la fonction suivant les mur aux alentours
