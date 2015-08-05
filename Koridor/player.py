@@ -45,10 +45,27 @@ class Player:
             case = board.map[x][y]
             if action.wallType == 1 and x > 0 and y < 8:
                 case2 = board.map[x - 1][y]
+                case3 = board.map[x][y + 1]
+                case4 = board.map[x - 1][y + 1]
 
-            if action.wallType in [1, 3] and x > 0:
+                case3.placeWall(3)
+                case4.placeWall(3)
+                case.placeWall(1)
+                case2.placeWall(1)
 
-            elif action.wallType in [2, 4] and y > 0:
+            elif action.wallType == 3  and x > 0 and y > 0:
+                case2 = board.map[x - 1][y]
+                case3 = board.map[x][y - 1]
+                case4 = board.map[x - 1][y - 1]
+
+                case3.placeWall(1)
+                case4.placeWall(1)
+                case.placeWall(3)
+                case2.placeWall(3)
+
+            elif action.wallType == 2 and y > 0 and x < 8:
+                case2 = board.map[x][y - 1]
+                case2 = board.map[x][y - 1]
                 case2 = board.map[x][y - 1]
             else:
                 return False
