@@ -13,6 +13,9 @@ class ShellInterface:
     """
 
     def __init__(self, game):
+        """
+            Constructor
+        """
         self.board = game.board
         self.activePlayer = game.activePlayer
 
@@ -81,6 +84,9 @@ class ShellInterface:
         return tmpReturn
 
     def askAction(self):
+        """
+            Ask the user the action he wants to execute
+        """
         print(("C'est au joueur " + str(self.activePlayer + 1) + " de jouer."))
         command = str(input("> "))
         return command
