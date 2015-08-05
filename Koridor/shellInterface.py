@@ -49,7 +49,7 @@ class ShellInterface:
         """
         playerId = self.board.getPlayerByPosition(position)
         if playerId != 0:
-            return str(playerId) + ' '
+            return ' ' + str(playerId)
         else:
             return '  '
 
