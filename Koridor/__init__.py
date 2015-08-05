@@ -11,6 +11,8 @@ from action import *
 game = Game()
 interface = ShellInterface(game)
 
+game.board.iterativCheckPath([0, 0], [[]])
+
 while True:
     # Draw the grid
     interface.drawGrid()

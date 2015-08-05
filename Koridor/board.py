@@ -74,13 +74,13 @@ class Board:
                     destinations, alreadyExplore):
                 return True
 
-        if not self.map[x][y].hasWall(2):
-            if self.resursiveCheckPath([position[0] + 1, position[1]],
+        if not self.map[x][y].hasWall(3):
+            if self.resursiveCheckPath([position[0], position[1] - 1],
                     destinations, alreadyExplore):
                 return True
 
-        if not self.map[x][y].hasWall(3):
-            if self.resursiveCheckPath([position[0], position[1] - 1],
+        if not self.map[x][y].hasWall(2):
+            if self.resursiveCheckPath([position[0] + 1, position[1]],
                     destinations, alreadyExplore):
                 return True
 
@@ -88,3 +88,35 @@ class Board:
             if self.resursiveCheckPath([position[0] - 1, position[1]],
                     destinations, alreadyExplore):
                 return True
+
+    def iterativCheckPath(self, positionPlayer, destinations):
+        """
+            Check if the player can go to his destinations
+        """
+        alreadyExplore = []
+        toExplore = [positionPlayer]
+
+        while toExplore:
+            # Take the first element to analyse
+            pending = toExplore[0]
+
+            if not pending in alreadyExplore:
+                if pending in destinations:
+                    return True
+
+            # Mark the element as done
+            toExplore = toExplore[1:]
+            alreadyExplore += [pending]
+
+            # Check if there is a top wall and if yes, then add the top case
+            if not self.map[pending[0]][pending[1]].hasWall(1):
+                toExplore += [pending[0], pending[1] + 1]
+
+            if not self.map[pending[0]][pending[1]].hasWall(3):
+                toExplore += [pending[0], pending[1] - 1]
+
+            if not self.map[pending[0]][pending[1]].hasWall(2):
+                toExplore += [pending[0] + 1, pending[1]]
+
+            if not self.map[pending[0]][pending[1]].hasWall(4):
+                toExplore += [pending[0] - 1, pending[1]]
