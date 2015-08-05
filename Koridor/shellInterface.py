@@ -18,6 +18,7 @@ class ShellInterface:
         """
         self.board = game.board
         self.game = game
+        self.players = game.players
 
     def drawGrid(self):
         """
@@ -52,7 +53,7 @@ class ShellInterface:
         """
             Method to return the center of a case
         """
-        playerId = self.board.getPlayerByPosition(position)
+        playerId = self.getPlayerByPosition(position)
         if playerId != 0:
             return ' ' + str(playerId)
         else:
@@ -93,3 +94,12 @@ class ShellInterface:
             + " de jouer."))
         command = str(input("> "))
         return command
+
+    def getPlayerByPosition(self, position):
+        """
+            return le joueur correspondant a la position
+        """
+        for player in self.players:
+            if player.position == position:
+                return player.id
+        return 0

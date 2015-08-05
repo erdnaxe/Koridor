@@ -24,7 +24,7 @@ class Game:
         for i in range(self.nbPlayer):
             self.players += [Player()]
 
-        self.board = Board(self.players)
+        self.board = Board()
 
     def newGame(self):
         """ this fonction create a new game

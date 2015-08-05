@@ -11,13 +11,12 @@ class Board:
     """
     this method implement the board of the game
     """
-    def __init__(self, players):
+    def __init__(self):
         """
             Constructor
         """
         self.size = 9
         self.map = []
-        self.players = players
         for i in range(self.size):
             self.map += [[]]
             for j in range(self.size):
@@ -41,15 +40,6 @@ class Board:
             Return la case correspondant a la position
         """
         return self.map[x][y]
-
-    def getPlayerByPosition(self, position):
-        """
-            return le joueur correspondant a la position
-        """
-        for player in self.players:
-            if player.position == position:
-                return player.id
-        return 0
 
     def checkPath(self, positionPlayer, destinations):
         """
@@ -100,23 +90,40 @@ class Board:
             # Take the first element to analyse
             pending = toExplore[0]
 
-            if not pending in alreadyExplore:
-                if pending in destinations:
-                    return True
+            if pending in destinations:
+                print("fini")
+                return True
 
-            # Mark the element as done
             toExplore = toExplore[1:]
             alreadyExplore += [pending]
 
-            # Check if there is a top wall and if yes, then add the top case
-            if not self.map[pending[0]][pending[1]].hasWall(1):
-                toExplore += [pending[0], pending[1] + 1]
+            newCaseToExplore = []
 
-            if not self.map[pending[0]][pending[1]].hasWall(3):
-                toExplore += [pending[0], pending[1] - 1]
+            if not self.map[pending[0]][pending[1]].hasWall(1):
+                newCase = [pending[0], pending[1] + 1]
+                if not newCase in toExplore:
+                    if not newCase in alreadyExplore:
+                        newCaseToExplore += [newCase]
 
             if not self.map[pending[0]][pending[1]].hasWall(2):
-                toExplore += [pending[0] + 1, pending[1]]
+                newCase = [pending[0] + 1, pending[1]]
+                if not newCase in toExplore:
+                    if not newCase in alreadyExplore:
+                        newCaseToExplore += [newCase]
+
+            if not self.map[pending[0]][pending[1]].hasWall(3):
+                newCase = [pending[0], pending[1] - 1]
+                if not newCase in toExplore:
+                    if not newCase in alreadyExplore:
+                        newCaseToExplore += [newCase]
 
             if not self.map[pending[0]][pending[1]].hasWall(4):
-                toExplore += [pending[0] - 1, pending[1]]
+                newCase = [pending[0] - 1, pending[1]]
+                if not newCase in toExplore:
+                    if not newCase in alreadyExplore:
+                        newCaseToExplore += [newCase]
+
+            toExplore = newCaseToExplore + toExplore
+
+        print("Rien...")
+        return False
