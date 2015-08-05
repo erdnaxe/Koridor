@@ -20,6 +20,7 @@ class Board:
         self.players = players
         for i in range(self.size):
             self.map.append([Case()] * self.size)
+        #TODO ajouter des murs autour du plateau
 
     def resetBoard(self):
         """
@@ -50,9 +51,35 @@ class Board:
         self.resursiveCheckPath(positionPlayer, destinations, alreadyExplore)
 
     def resursiveCheckPath(self, position, destinations, alreadyExplore):
+        """
+            this method find a path
+            position : [x,y]
+        """
         if position in alreadyExplore:
             return False
         if position in destinations:
             return True
+
+        alreadyExplore += [position]
+        if not self.map[x][y].hasWall(1):
+            if self.resursiveCheckPath([position[0], position[1] + 1],
+                    destinations, alreadyExplore):
+                return True
+
+        if not self.map[x][y].hasWall(2):
+            if self.resursiveCheckPath([position[0] + 1, position[1]],
+                    destinations, alreadyExplore):
+                return True
+
+        if not self.map[x][y].hasWall(3):
+            if self.resursiveCheckPath([position[0], position[1] - 1],
+                    destinations, alreadyExplore):
+                return True
+
+        if not self.map[x][y].hasWall(4):
+            if self.resursiveCheckPath([position[0] - 1, position[1]],
+                    destinations, alreadyExplore):
+                return True
+
 
         #TODO : appel de la fonction suivant les mur aux alentours

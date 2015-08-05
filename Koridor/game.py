@@ -37,7 +37,7 @@ class Game:
         """
 
         # Do the action !
-        if not self.players[self.activePlayer].executeAction(action):
+        if not self.players[self.activePlayer].executeAction(action, self.board):
             print("Cette action ne peut pas être effectué")
             return False
 
