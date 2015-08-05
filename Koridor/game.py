@@ -89,6 +89,8 @@ class Game:
 
     def isFinished(self):
         for player in self.players:
-            if (player.initposition[0] - player.position[0]) ** 2 == 81:
+            if (player.initPosition[0] - player.position[0]) == 9:
+                return player.id
+            if (player.position[0] - player.initPosition[0]) == 9:
                 return player.id
         return 0
