@@ -25,23 +25,25 @@ class ShellInterface:
         """
         print()  # new line
 
-        for x in range(self.board.size):
-            print((self.horizontalGridLine(x)))
+        for i in range(self.board.size):
+            y = self.board.size - 1 - i
+            print((self.horizontalGridLine(y)))
 
-            if x != self.board.size - 1:
+            if y != 0:
                 # draw the bottom horizontal line of walls
-                print((self.horizontalWalls(self.board.map[x])))
+                print((self.horizontalWalls(y)))
 
-    def horizontalGridLine(self, x):
+    def horizontalGridLine(self, y):
         """
             Method to return a horizontal line of vertical walls and players
         """
         tmpReturn = ''
 
-        for y in range(self.board.size):
+        for x in range(self.board.size):
             tmpReturn += self.centerCase([x, y])
-            if y != self.board.size - 1:
-                # draw right wall
+
+            # draw right wall
+            if x != self.board.size - 1:
                 tmpReturn += self.verticalWall(self.board.map[x][y])
 
         return tmpReturn
@@ -60,25 +62,25 @@ class ShellInterface:
         """
             Method to return the wall between 2 players
         """
-        if case.hasWall(3):
+        if case.hasWall(2):
             return '█'
         else:
             return '│'
 
-    def horizontalWalls(self, line):
+    def horizontalWalls(self, y):
         """
             Method to return a horizontal line of walls (not the player line)
         """
         tmpReturn = ''
 
-        for y in range(self.board.size):
-            if line[y].hasWall(2):
+        for x in range(self.board.size):
+            if self.board.map[x][y].hasWall(3):
                 tmpReturn += '■■'
             else:
                 tmpReturn += '——'
 
             # Draw the plus
-            if y != self.board.size - 1:
+            if x != self.board.size - 1:
                 tmpReturn += '┼'
 
         return tmpReturn

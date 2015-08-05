@@ -24,11 +24,11 @@ class Board:
                 self.map[i] += [Case()]
 
         # Place walls around the map
-        """for i in range(self.size):
-            self.map[0][i].placeWall(1)  # Top Walls
-            self.map[i][self.size - 1].placeWall(2)  # Right Walls
-            self.map[self.size - 1][i].placeWall(3)  # Bottom Walls
-            self.map[i][0].placeWall(4)  # Left Walls"""
+        for i in range(self.size):
+            self.map[i][self.size - 1].placeWall(1)  # Top Walls
+            self.map[self.size - 1][i].placeWall(2)  # Left Walls
+            self.map[i][0].placeWall(3)  # Bottom Walls
+            self.map[0][i].placeWall(4)  # Right Walls
 
     def resetBoard(self):
         """

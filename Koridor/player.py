@@ -19,11 +19,11 @@ class Player:
         self.position = []
 
         if self.id == 1:
-            self.initPosition = [0, 4]
-            self.position = [0, 4]
+            self.initPosition = [4, 0]
+            self.position = [4, 0]
         elif self.id == 2:
-            self.initPosition = [8, 4]
-            self.position = [8, 4]
+            self.initPosition = [4, 8]
+            self.position = [4, 8]
         else:
             print("This software doesn't support more than 2 players.")
 

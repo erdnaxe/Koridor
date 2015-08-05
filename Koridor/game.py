@@ -23,6 +23,7 @@ class Game:
         self.players = []
         for i in range(self.nbPlayer):
             self.players += [Player()]
+
         self.board = Board(self.players)
 
     def newGame(self):
