@@ -38,40 +38,44 @@ class Player:
                     self.move(i)
                     return True
 
+        print("cas du mur")
+        print(action.id)
+        print(action.wallType)
+        print(action.wallCoordinate)
         if action.id == 5:
+            print("placement du mur")
             # place a wall
             x = action.wallCoordinate[0]
             y = action.wallCoordinate[1]
-            case = board.map[x][y]
+            print(action.wallType)
+            print(x)
+            print(y)
             if action.wallType == 1 and x > 0 and y < 8:
-                case2 = board.map[x - 1][y]
-                case3 = board.map[x][y + 1]
-                case4 = board.map[x - 1][y + 1]
+                xNode = x - 1
+                yNode = y
+                typeNode = 1
+                return board.placeWall(xNode, yNode, typeNode)
 
-                case3.placeWall(3)
-                case4.placeWall(3)
-                case.placeWall(1)
-                case2.placeWall(1)
-
-            elif action.wallType == 3  and x > 0 and y > 0:
-                case2 = board.map[x - 1][y]
-                case3 = board.map[x][y - 1]
-                case4 = board.map[x - 1][y - 1]
-
-                case3.placeWall(1)
-                case4.placeWall(1)
-                case.placeWall(3)
-                case2.placeWall(3)
+            elif action.wallType == 3 and x > 0 and y > 0:
+                print("mur de type 3")
+                xNode = x - 1
+                yNode = y - 1
+                typeNode = 1
+                return board.placeWall(xNode, yNode, typeNode)
 
             elif action.wallType == 2 and y > 0 and x < 8:
-                case2 = board.map[x][y - 1]
-                case2 = board.map[x][y - 1]
-                case2 = board.map[x][y - 1]
+                xNode = x
+                yNode = y - 1
+                typeNode = 2
+                return board.placeWall(xNode, yNode, typeNode)
+
+            elif action.wallType == 4 and y > 0 and x > 0:
+                xNode = x - 1
+                yNode = y - 1
+                typeNode = 2
+                return board.placeWall(xNode, yNode, typeNode)
             else:
                 return False
-
-
-
         return False
 
     def move(self, idDeplacement):

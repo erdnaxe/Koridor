@@ -31,17 +31,19 @@ class Action:
         """
             This method take a string and init the Action object depending of it
         """
+        print("traitement de l'action")
         for i in range(4):
             if actionString == Action.allActions[i]:
                 self.id = i + 1
                 return True
-        if actionString in Action.allActions[4]:
+        if actionString[:len(Action.allActions[4])] == Action.allActions[4]:
             # "w 2 5 3" "w [0,8] [0, 8], [1, 4]"
             # cas du placement de mur
+            print("placement de mur")
             part = actionString.split()
             self.id = 5
             self.wallCoordinate = [int(part[1]), int(part[2])]
-            self.wallType = part(3)
+            self.wallType = int(part[3])
             return True
 
         return False

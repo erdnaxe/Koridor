@@ -15,8 +15,17 @@ class Board:
         """
             Constructor
         """
-        self.size = 9
-        self.map = []
+        self.size = 9  # nomber of cases
+        self.map = []  # 2D tabular with the cases
+        self.nodes = []  # the nodes of the bard : each node contain
+                        # 0 => nothing
+                        # 1 => a horizontal wall
+                        # 2 => a vertical wall
+        # init of nodes
+        for i in range(self.size - 1):
+            self.nodes += [(self.size - 1) * [0]]
+
+        # init of map
         for i in range(self.size):
             self.map += [[]]
             for j in range(self.size):
@@ -28,6 +37,45 @@ class Board:
             self.map[self.size - 1][i].placeWall(2)  # Left Walls
             self.map[i][0].placeWall(3)  # Bottom Walls
             self.map[0][i].placeWall(4)  # Right Walls
+
+    def placeWall(self, x, y, type):
+        """
+            Place a wall on the node of coordonate (x, y) of type "type"
+            return True if the wall has been created, else False
+        """
+        if self.nodes[x][y] != 0:
+            print("Erreur : impossible de placer un mur au niveau de ce noeud")
+            return False
+
+        if type == 1:  # horizontal
+            # check if no wall are already here
+            if x > 0 and self.nodes[x - 1][y] == 1:
+                return False
+            if x < self.size - 1 and self.nodes[x + 1][y] == 1:
+                return False
+
+            # the wall can be put
+            self.nodes[x][y] = type
+            self.map[x][y].placeWall(1)
+            self.map[x + 1][y].placeWall(1)
+            self.map[x][y + 1].placeWall(3)
+            self.map[x + 1][y + 1].placeWall(3)
+            return True
+
+        if type == 2:  # vertical
+            # check if no wall are already here
+            if y > 0 and self.nodes[x][y - 1] == 2:
+                return False
+            if y < self.size - 1 and self.nodes[x][y + 1] == 2:
+                return False
+
+            # the wall can be put
+            self.nodes[x][y] = type
+            self.map[x][y].placeWall(2)
+            self.map[x + 1][y].placeWall(4)
+            self.map[x][y + 1].placeWall(2)
+            self.map[x + 1][y + 1].placeWall(4)
+            return True
 
     def resetBoard(self):
         """
