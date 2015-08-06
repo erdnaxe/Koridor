@@ -3,6 +3,7 @@
 from .label import *
 from .lines import *
 from .grid import *
+from .player import *
 
 
 class WindowFactory:
@@ -24,7 +25,8 @@ class WindowFactory:
         self.window.clear()
         for item in self.items:
             item.draw()
-        self.grid.draw()
+        for item in self.players_items:
+            item.draw()
 
     def createLabel(self, text, x, y, size=36, font='Liberation Sans'):
         """
@@ -38,8 +40,22 @@ class WindowFactory:
         """
         self.items += [Lines(x1, y1, x2, y2, origin)]
 
-    def createGrid(self, size_x, size_y, width, height):
+    def createGrid(self, board, width, height):
         """
             Create a grid of size size_x, size_y
         """
-        self.grid = Grid(size_x, size_y, width, height)
+        grid = Grid(board, width, height)
+        self.items += [grid]
+        return grid
+
+    def removePlayers(self):
+        """
+            Remove all players
+        """
+        self.players_items = []
+
+    def createPlayer(self, player, grid):
+        """
+            Create or move a player
+        """
+        self.players_items += [Player(player, grid)]

@@ -18,20 +18,21 @@ class GraphicInterface:
         """
             Constructor
         """
-        # Getting all infos about the game
-        self.game = game
-        self.board = game.board
-        self.players = game.players
+        #TODO: add these in arguments
+        width = 200
+        height = 200
 
         # Create the window
         self.factory = WindowFactory()
-        self.factory.createLabel('Koridor', 0, 300)
+        self.factory.createLabel('Koridor', 0, 300)  # Title
 
-        size_x = 9
-        size_y = 9
-        width = 200
-        height = 200
-        self.factory.createGrid(size_x, size_y, width, height)
+        # Create the grid (by Kevin Flynn)
+        self.grid = self.factory.createGrid(game.board, width, height)
+
+        # Create players & walls
+        self.players = game.players
+        self.map = game.board.map
+        self.refresh()
 
         # Add events
         self.on_draw = self.factory.window.event(self.on_draw)
@@ -43,6 +44,14 @@ class GraphicInterface:
 
         # Exit
         print('Thanks a lot for playing !')
+
+    def refresh(self):
+        """
+            Method to refresh the interface
+        """
+        self.factory.removePlayers()
+        for player in self.players:
+            self.factory.createPlayer(player, self.grid)
 
     def on_draw(self):
         """
@@ -68,4 +77,6 @@ class GraphicInterface:
             Event to bind mouse to actions
         """
         if button == mouse.LEFT:
-            print ('The left mouse button was pressed.')
+            coord = self.grid.getCaseByAbsolutCoordinates(x, y)
+            if coord:
+                print(coord)
