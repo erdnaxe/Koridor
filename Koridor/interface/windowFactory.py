@@ -2,6 +2,7 @@
 
 from .label import *
 from .lines import *
+from .grid import *
 
 
 class WindowFactory:
@@ -23,6 +24,7 @@ class WindowFactory:
         self.window.clear()
         for item in self.items:
             item.draw()
+        self.grid.draw()
 
     def createLabel(self, text, x, y, size=36, font='Liberation Sans'):
         """
@@ -34,5 +36,10 @@ class WindowFactory:
         """
             Create a line from (x1, y1) to (x2, y2)
         """
-        self.items += [Lines(origin[0] + x1, origin[1] + y1,
-                origin[0] + x2, origin[1] + y2)]
+        self.items += [Lines(x1, y1, x2, y2, origin)]
+
+    def createGrid(self, size_x, size_y, width, height):
+        """
+            Create a grid of size size_x, size_y
+        """
+        self.grid = Grid(size_x, size_y, width, height)
