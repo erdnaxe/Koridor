@@ -46,36 +46,40 @@ class Board:
             Check if the player can go to his destinations
         """
         alreadyExplore = []
-        self.resursiveCheckPath(positionPlayer, destinations, alreadyExplore)
+        return self.resursiveCheckPath(positionPlayer, destinations,
+            alreadyExplore)
 
-    def resursiveCheckPath(self, position, destinations, alreadyExplore):
+    def resursiveCheckPath(self, pending, destinations, alreadyExplore):
         """
             this method find a path
-            position : [x,y]
+            pending : [x,y]
         """
-        if position in alreadyExplore:
+        print(pending)
+
+        if pending in alreadyExplore:
             return False
-        if position in destinations:
+        if pending in destinations:
             return True
 
-        alreadyExplore += [position]
-        if not self.map[x][y].hasWall(1):
-            if self.resursiveCheckPath([position[0], position[1] + 1],
+        alreadyExplore += [pending]
+
+        if not self.map[pending[0]][pending[1]].hasWall(1):
+            if self.resursiveCheckPath([pending[0], pending[1] + 1],
                     destinations, alreadyExplore):
                 return True
 
-        if not self.map[x][y].hasWall(3):
-            if self.resursiveCheckPath([position[0], position[1] - 1],
+        if not self.map[pending[0]][pending[1]].hasWall(2):
+            if self.resursiveCheckPath([pending[0] + 1, pending[1]],
                     destinations, alreadyExplore):
                 return True
 
-        if not self.map[x][y].hasWall(2):
-            if self.resursiveCheckPath([position[0] + 1, position[1]],
+        if not self.map[pending[0]][pending[1]].hasWall(3):
+            if self.resursiveCheckPath([pending[0], pending[1] - 1],
                     destinations, alreadyExplore):
                 return True
 
-        if not self.map[x][y].hasWall(4):
-            if self.resursiveCheckPath([position[0] - 1, position[1]],
+        if not self.map[pending[0]][pending[1]].hasWall(4):
+            if self.resursiveCheckPath([pending[0] - 1, pending[1]],
                     destinations, alreadyExplore):
                 return True
 
