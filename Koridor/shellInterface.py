@@ -33,12 +33,16 @@ class ShellInterface:
             if y != 0:
                 # draw the bottom horizontal line of walls
                 print((self.horizontalWalls(y)))
+        lastLine = '  '
+        for i in range(self.board.size):
+            lastLine += str(i) + '  '
+        print(lastLine)
 
     def horizontalGridLine(self, y):
         """
             Method to return a horizontal line of vertical walls and players
         """
-        tmpReturn = ''
+        tmpReturn = str(y) + ' '
 
         for x in range(self.board.size):
             tmpReturn += self.centerCase([x, y])
@@ -46,6 +50,11 @@ class ShellInterface:
             # draw right wall
             if x != self.board.size - 1:
                 tmpReturn += self.verticalWall(self.board.map[x][y])
+
+        if y == 5:
+            tmpReturn += '  le joueur 1 a ' + str(self.game.players[0].walls) + ' murs'
+        if y == 6:
+            tmpReturn += '  le joueur 2 a ' + str(self.game.players[1].walls) + ' murs'
 
         return tmpReturn
 
@@ -72,7 +81,7 @@ class ShellInterface:
         """
             Method to return a horizontal line of walls (not the player line)
         """
-        tmpReturn = ''
+        tmpReturn = '  '
 
         for x in range(self.board.size):
             if self.board.map[x][y].hasWall(3):
