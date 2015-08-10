@@ -38,12 +38,10 @@ class Player:
                     self.move(i)
                     return True
 
-        print("cas du mur")
         print(action.id)
         print(action.wallType)
         print(action.wallCoordinate)
-        if action.id == 5:
-            print("placement du mur")
+        if action.id == 5 and self.walls > 0:
             # place a wall
             x = action.wallCoordinate[0]
             y = action.wallCoordinate[1]
@@ -54,28 +52,24 @@ class Player:
                 xNode = x - 1
                 yNode = y
                 typeNode = 1
-                return board.placeWall(xNode, yNode, typeNode)
-
             elif action.wallType == 3 and x > 0 and y > 0:
-                print("mur de type 3")
                 xNode = x - 1
                 yNode = y - 1
                 typeNode = 1
-                return board.placeWall(xNode, yNode, typeNode)
-
             elif action.wallType == 2 and y > 0 and x < 8:
                 xNode = x
                 yNode = y - 1
                 typeNode = 2
-                return board.placeWall(xNode, yNode, typeNode)
-
             elif action.wallType == 4 and y > 0 and x > 0:
                 xNode = x - 1
                 yNode = y - 1
                 typeNode = 2
-                return board.placeWall(xNode, yNode, typeNode)
             else:
                 return False
+            if not board.placeWall(xNode, yNode, typeNode):
+                return False
+            self.walls -= 1
+            return True
         return False
 
     def move(self, idDeplacement):
