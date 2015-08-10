@@ -49,10 +49,12 @@ class Board:
 
         if type == 1:  # horizontal
             # check if no wall are already here
-            if x > 0 and self.nodes[x - 1][y] == 1:
-                return False
-            if x < self.size - 1 and self.nodes[x + 1][y] == 1:
-                return False
+            if x > 0:
+                if self.nodes[x - 1][y] == 1:
+                    return False
+            if x < self.size - 2:
+                if self.nodes[x + 1][y] == 1:
+                    return False
 
             # the wall can be put
             self.nodes[x][y] = type
@@ -64,10 +66,12 @@ class Board:
 
         if type == 2:  # vertical
             # check if no wall are already here
-            if y > 0 and self.nodes[x][y - 1] == 2:
-                return False
-            if y < self.size - 1 and self.nodes[x][y + 1] == 2:
-                return False
+            if y > 0:
+                if self.nodes[x][y - 1] == 2:
+                    return False
+            if y < self.size - 2:
+                if self.nodes[x][y + 1] == 2:
+                    return False
 
             # the wall can be put
             self.nodes[x][y] = type
