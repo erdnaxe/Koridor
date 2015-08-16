@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .lines import *
+from .line import *
 
 
 class Wall:
@@ -13,23 +13,23 @@ class Wall:
         width = 3
 
         # Origin coords of the case
-        x = coord[0] * grid.width // grid.size_x
-        y = coord[1] * grid.height // grid.size_y
+        x = coord[0] * grid.case_width
+        y = coord[1] * grid.case_height
 
         if side == 1:
-            x2 = x + grid.width // grid.size_x
-            y1 = y + grid.width // grid.size_y
-            self.line = Lines(x, y1, x2, y1, grid.origin, color, width)
+            x2 = x + grid.case_width
+            y1 = y + grid.case_height
+            self.line = Line(x, y1, x2, y1, grid.origin, color, width)
         elif side == 2:
-            x1 = x + grid.width // grid.size_x
-            y2 = y + grid.width // grid.size_y
-            self.line = Lines(x1, y, x1, y2, grid.origin, color, width)
+            x1 = x + grid.case_width
+            y2 = y + grid.case_height
+            self.line = Line(x1, y, x1, y2, grid.origin, color, width)
         elif side == 3:
-            x2 = x + grid.width // grid.size_x
-            self.line = Lines(x, y, x2, y, grid.origin, color, width)
+            x2 = x + grid.case_width
+            self.line = Line(x, y, x2, y, grid.origin, color, width)
         else:
-            y2 = y + grid.width // grid.size_y
-            self.line = Lines(x, y, x, y2, grid.origin, color, width)
+            y2 = y + grid.case_height
+            self.line = Line(x, y, x, y2, grid.origin, color, width)
 
     def draw(self):
         """

@@ -2,7 +2,7 @@
 
 from .grid import *
 from .label import *
-from .lines import *
+from .line import *
 from .player import *
 from .wall import *
 
@@ -16,12 +16,19 @@ class WindowFactory:
         """
             Constructor
         """
-        self.window = pyglet.window.Window()
+        self.window = pyglet.window.Window(400, 450, visible=False,
+            resizable=True, caption='Koridor')
+        self.window.set_minimum_size(400, 450)
 
+        # Create items
         self.items = []  # Static items
         self.initPlayerItems()  # Player items
         self.initWallItems()  # Wall items
         self.setActivePlayerLabel()  # Active player label
+
+        # Show the window
+        self.draw()
+        self.window.set_visible()
 
     def draw(self):
         """
@@ -54,7 +61,7 @@ class WindowFactory:
         """
             Create a line from (x1, y1) to (x2, y2)
         """
-        self.items += [Lines(x1, y1, x2, y2, origin)]
+        self.items += [Line(x1, y1, x2, y2, origin)]
 
     def createGrid(self, board, width, height):
         """
@@ -93,4 +100,4 @@ class WindowFactory:
             Change the show number for the active player
         """
         label = 'Player ' + str(activePlayerNb) + " (" + str(nbWallPlayer) + ")"
-        self.activePlayerLabel = Label(label, 0, 380, 16)
+        self.activePlayerLabel = Label(label, 50, 380, 16)

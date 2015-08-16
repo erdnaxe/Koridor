@@ -14,7 +14,7 @@ class GraphicInterface:
             Constructor
         """
         self.factory = WindowFactory()  # Factory
-        self.factory.createLabel('Koridor', 0, 400)  # Title
+        self.factory.createLabel('Koridor', 50, 400)  # Title
         self.grid = self.factory.createGrid(game.board, width, height)  # Grid
 
         self.game = game  # for players & active player

@@ -3,16 +3,22 @@ from .label import *
 
 
 class Player():
+    """
+        Player graphic item takes a player and the grid to draw the player
+        at the correct coordinates on the grid.
+    """
 
     def __init__(self, player, grid):
         """
             Constructor
         """
-        x = player.position[0] * grid.width // grid.size_x
-        y = player.position[1] * grid.height // grid.size_y
+        # Origin of the case
+        x = player.position[0] * grid.case_width + grid.origin[0]
+        y = player.position[1] * grid.case_height + grid.origin[1]
 
-        x += grid.origin[0] + grid.case_width // 4
-        y += grid.origin[1] + grid.case_height // 4
+        # Offset in the case
+        x += grid.case_width // 4
+        y += grid.case_height // 4
 
         text_height = grid.case_height // 2
 
