@@ -7,26 +7,58 @@
 from game import *
 from interface.graphicInterface import *
 from action import *
+import pyglet
+from pyglet.window import key
+from pyglet.window import mouse
 
+# Create game and interface instance
 game = Game()
 interface = GraphicInterface(game)
 
-# This source code was for the shell version for the game, it will be remove
-"""while True:
-    # Draw the grid
-    interface.drawGrid()
 
-    # Ask and play an action
-    stringAction = interface.askAction()
+def play(actionString):
+    """
+        Function to play an action
+    """
     action = Action()
-    if action.stringToAction(stringAction):
-        # the action is valid
-        if game.play(action):
-            # End of the game
-            if game.isFinished():
-                print("Le joueur " + str(game.isFinished()) + " a gagné")
-                game.newGame()
-    else:
-        # not a valid action
-        print("Action inconnue")
-"""
+    action.stringToAction(actionString)
+    game.play(action)
+
+
+@interface.factory.window.event
+def on_draw():
+    """
+        Event to clear & draw the window
+    """
+    interface.factory.draw()
+
+
+@interface.factory.window.event
+def on_key_press(symbol, modifiers):
+    """
+        Event to bind keys to actions
+    """
+    if symbol == key.Z or symbol == key.UP:
+        play('go_forward')
+    elif symbol == key.D or symbol == key.RIGHT:
+        play('go_right')
+    elif symbol == key.S or symbol == key.DOWN:
+        play('go_backward')
+    elif symbol == key.Q or symbol == key.LEFT:
+        play('go_left')
+    interface.refresh()
+
+
+@interface.factory.window.event
+def on_mouse_press(x, y, button, modifiers):
+    """
+        Event to bind mouse to actions
+    """
+    if button == mouse.LEFT:
+        coord = interface.grid.getCaseByAbsolutCoordinates(x, y)
+        if coord:
+            play('place_wall ' + str(coord[0]) + ' ' + str(coord[1]) + ' 1')
+
+
+# Run Forest, run !
+pyglet.app.run()

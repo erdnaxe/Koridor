@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import pyglet
+import pyglet.text
 
 
 class Label():
