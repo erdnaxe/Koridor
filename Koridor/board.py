@@ -11,11 +11,11 @@ class Board:
     """
     this method implement the board of the game
     """
-    def __init__(self):
+    def __init__(self, size=9):
         """
             Constructor
         """
-        self.size = 9  # nomber of cases
+        self.size = size  # nomber of cases
         self.map = []  # 2D tabular with the cases
         self.nodes = []  # the nodes of the bard : each node contain
                         # 0 => nothing

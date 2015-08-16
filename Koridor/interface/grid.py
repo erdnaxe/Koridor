@@ -38,15 +38,24 @@ class Grid():
         for item in self.items:
             item.draw()
 
-    def getCaseByAbsolutCoordinates(self, x, y):
+    def getCaseColByAbsX(self, x):
         """
-            Method to get the cooresponding case to a coordinate
+            Method to get the cooresponding x case colomn to a x coordinate
         """
         x = x - self.origin[0]
-        y = y - self.origin[1]
         case_x = x * self.size_x // self.width
+
+        if not case_x > (self.size_x - 1):
+            if not case_x < 0:
+                return case_x
+
+    def getCaseLineByAbsY(self, y):
+        """
+            Method to get the cooresponding y case line to a y coordinate
+        """
+        y = y - self.origin[1]
         case_y = y * self.size_y // self.height
 
-        if not case_x > (self.size_x - 1) and not case_y > (self.size_y - 1):
-            if not case_x < 0 and not case_y < 0:
-                return [case_x, case_y]
+        if not case_y > (self.size_y - 1):
+            if not case_y < 0:
+                return case_y

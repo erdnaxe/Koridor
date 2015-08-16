@@ -14,17 +14,17 @@ class Game:
     """ Principal class of the game, controle everything relative to the game
     """
 
-    def __init__(self):
+    def __init__(self, nbPlayer=2, size=9):
         """ constructor
         """
-        self.nbPlayer = 2
+        self.nbPlayer = nbPlayer
         self.activePlayer = 0  # joueur dont c'est le tour de jouer
 
         self.players = []
         for i in range(self.nbPlayer):
             self.players += [Player()]
 
-        self.board = Board()
+        self.board = Board(size)
 
     def newGame(self):
         """ this fonction create a new game

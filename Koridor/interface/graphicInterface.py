@@ -9,7 +9,7 @@ class GraphicInterface:
         It used PyGlet to bind OpenGL to Python
     """
 
-    def __init__(self, game, width=200, height=200):
+    def __init__(self, game, width=300, height=300):
         """
             Constructor
         """
@@ -45,4 +45,6 @@ class GraphicInterface:
                     self.factory.addWallItem([i, j], 4, self.grid)
 
         # Refresh active player label
-        self.factory.setActivePlayerLabel(self.game.activePlayer + 1)
+        playerId = self.game.activePlayer
+        nbWallPlayer = self.game.players[playerId].walls
+        self.factory.setActivePlayerLabel(playerId + 1, nbWallPlayer)

@@ -11,8 +11,11 @@ import pyglet
 from pyglet.window import key
 from pyglet.window import mouse
 
+nbPlayer = 2
+size = 9
+
 # Create game and interface instance
-game = Game()
+game = Game(nbPlayer, size)
 interface = GraphicInterface(game)
 
 
@@ -54,11 +57,14 @@ def on_mouse_press(x, y, button, modifiers):
     """
         Event to bind mouse to actions
     """
-    if button == mouse.LEFT:
-        coord = interface.grid.getCaseByAbsolutCoordinates(x, y)
-        if coord:
-            play('place_wall ' + str(coord[0]) + ' ' + str(coord[1]) + ' 1')
+    x = interface.grid.getCaseColByAbsX(x)
+    y = interface.grid.getCaseLineByAbsY(y)
 
+    if x and y:
+        if button == mouse.LEFT:
+            play('place_wall ' + str(x) + ' ' + str(y) + ' 1')
+        elif button == mouse.RIGHT:
+            play('place_wall ' + str(x) + ' ' + str(y) + ' 2')
 
 # Run Forest, run !
 pyglet.app.run()

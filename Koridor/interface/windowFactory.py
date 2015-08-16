@@ -88,9 +88,9 @@ class WindowFactory:
         """
         self.wall_items += [Wall(coord, side, grid)]
 
-    def setActivePlayerLabel(self, activePlayerNb=1):
+    def setActivePlayerLabel(self, activePlayerNb=1, nbWallPlayer=0):
         """
             Change the show number for the active player
         """
-        label = 'Player ' + str(activePlayerNb)
-        self.activePlayerLabel = Label(label, 0, 300, 16)
+        label = 'Player ' + str(activePlayerNb) + " (" + str(nbWallPlayer) + ")"
+        self.activePlayerLabel = Label(label, 0, 380, 16)

@@ -9,7 +9,7 @@ class Wall:
         """
             Constructor
         """
-        color = [0, 255, 255]
+        color = [255, 0, 0]
 
         # Origin coords of the case
         x = coord[0] * grid.width // grid.size_x
