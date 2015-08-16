@@ -5,13 +5,14 @@
 """
 
 from game import *
-from shellInterface import *
+from interface.graphicInterface import *
 from action import *
 
 game = Game()
-interface = ShellInterface(game)
+interface = GraphicInterface(game)
 
-while True:
+# This source code was for the shell version for the game, it will be remove
+"""while True:
     # Draw the grid
     interface.drawGrid()
 
@@ -28,3 +29,4 @@ while True:
     else:
         # not a valid action
         print("Action inconnue")
+"""
