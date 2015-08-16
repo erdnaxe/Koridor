@@ -14,20 +14,35 @@ class GraphicInterface:
             Constructor
         """
         self.factory = WindowFactory()  # Factory
-        self.factory.createLabel('Koridor', 0, 300)  # Title
+        self.factory.createLabel('Koridor', 0, 400)  # Title
         self.grid = self.factory.createGrid(game.board, width, height)  # Grid
 
-        # Get players & walls
-        self.players = game.players
-        self.map = game.board.map
+        self.game = game  # for players & active player
+        self.board = game.board  # for walls
 
-        # Place players & walls
-        self.refresh()
+        self.refresh()  # Place players & walls
 
     def refresh(self):
         """
             Method to refresh the interface
         """
-        self.factory.removePlayers()
-        for player in self.players:
-            self.factory.createPlayer(player, self.grid)
+        # Refresh players
+        self.factory.initPlayerItems()
+        for player in self.game.players:
+            self.factory.addPlayerItem(player, self.grid)
+
+        # Refresh walls
+        self.factory.initWallItems()
+        for i in range(self.board.size):
+            for j in range(self.board.size):
+                if self.board.map[i][j].hasWall(1):
+                    self.factory.addWallItem([i, j], 1, self.grid)
+                if self.board.map[i][j].hasWall(2):
+                    self.factory.addWallItem([i, j], 2, self.grid)
+                if self.board.map[i][j].hasWall(3):
+                    self.factory.addWallItem([i, j], 3, self.grid)
+                if self.board.map[i][j].hasWall(4):
+                    self.factory.addWallItem([i, j], 4, self.grid)
+
+        # Refresh active player label
+        self.factory.setActivePlayerLabel(self.game.activePlayer + 1)

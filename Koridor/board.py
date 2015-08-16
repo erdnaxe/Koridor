@@ -106,7 +106,7 @@ class Board:
             this method find a path
             pending : [x,y]
         """
-        print(pending)
+        #print(pending)
 
         if pending in alreadyExplore:
             return False

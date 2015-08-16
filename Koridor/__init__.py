@@ -23,6 +23,7 @@ def play(actionString):
     action = Action()
     action.stringToAction(actionString)
     game.play(action)
+    interface.refresh()
 
 
 @interface.factory.window.event
@@ -46,7 +47,6 @@ def on_key_press(symbol, modifiers):
         play('go_backward')
     elif symbol == key.Q or symbol == key.LEFT:
         play('go_left')
-    interface.refresh()
 
 
 @interface.factory.window.event

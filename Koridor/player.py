@@ -38,16 +38,14 @@ class Player:
                     self.move(i)
                     return True
 
-        print(action.id)
-        print(action.wallType)
-        print(action.wallCoordinate)
         if action.id == 5 and self.walls > 0:
             # place a wall
             x = action.wallCoordinate[0]
             y = action.wallCoordinate[1]
-            print(action.wallType)
-            print(x)
-            print(y)
+
+            print("Placement d'un mur de type " + str(action.wallType)
+                + " en [" + str(x) + ", " + str(y) + "]")
+
             if action.wallType == 1 and x > 0 and y < 8:
                 xNode = x - 1
                 yNode = y

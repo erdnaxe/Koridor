@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from .grid import *
 from .label import *
 from .lines import *
-from .grid import *
 from .player import *
+from .wall import *
 
 
 class WindowFactory:
@@ -16,17 +17,32 @@ class WindowFactory:
             Constructor
         """
         self.window = pyglet.window.Window()
-        self.items = []
+
+        self.items = []  # Static items
+        self.initPlayerItems()  # Player items
+        self.initWallItems()  # Wall items
+        self.setActivePlayerLabel()  # Active player label
 
     def draw(self):
         """
             Clear and then draw all objects
         """
         self.window.clear()
+
+        # Static items
         for item in self.items:
             item.draw()
-        for item in self.players_items:
+
+        # Player items
+        for item in self.player_items:
             item.draw()
+
+        # Wall items
+        for item in self.wall_items:
+            item.draw()
+
+        # Active player label item
+        self.activePlayerLabel.draw()
 
     def createLabel(self, text, x, y, size=36, font='Liberation Sans'):
         """
@@ -48,14 +64,33 @@ class WindowFactory:
         self.items += [grid]
         return grid
 
-    def removePlayers(self):
+    def initPlayerItems(self):
         """
             Remove all players
         """
-        self.players_items = []
+        self.player_items = []
 
-    def createPlayer(self, player, grid):
+    def addPlayerItem(self, player, grid):
         """
             Create or move a player
         """
-        self.players_items += [Player(player, grid)]
+        self.player_items += [Player(player, grid)]
+
+    def initWallItems(self):
+        """
+            Remove all wall
+        """
+        self.wall_items = []
+
+    def addWallItem(self, coord, side, grid):
+        """
+            Create or move a wall
+        """
+        self.wall_items += [Wall(coord, side, grid)]
+
+    def setActivePlayerLabel(self, activePlayerNb=1):
+        """
+            Change the show number for the active player
+        """
+        label = 'Player ' + str(activePlayerNb)
+        self.activePlayerLabel = Label(label, 0, 300, 16)

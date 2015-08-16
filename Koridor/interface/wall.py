@@ -1,11 +1,37 @@
 # -*- coding: utf-8 -*-
 
+from .lines import *
+
 
 class Wall:
 
-    def __init__(self):
+    def __init__(self, coord, side, grid):
+        """
+            Constructor
+        """
+        color = [0, 255, 255]
 
-"""
-    Check d'un mur :
-        if self.board.map[x][y].hasWall(3):
-"""
+        # Origin coords of the case
+        x = coord[0] * grid.width // grid.size_x
+        y = coord[1] * grid.height // grid.size_y
+
+        if side == 1:
+            x2 = x + grid.width // grid.size_x
+            y1 = y + grid.width // grid.size_y
+            self.line = Lines(x, y1, x2, y1, grid.origin, color)
+        elif side == 2:
+            x1 = x + grid.width // grid.size_x
+            y2 = y + grid.width // grid.size_y
+            self.line = Lines(x1, y, x1, y2, grid.origin, color)
+        elif side == 3:
+            x2 = x + grid.width // grid.size_x
+            self.line = Lines(x, y, x2, y, grid.origin, color)
+        else:
+            y2 = y + grid.width // grid.size_y
+            self.line = Lines(x, y, x, y2, grid.origin, color)
+
+    def draw(self):
+        """
+            Draw the object
+        """
+        self.line.draw()
